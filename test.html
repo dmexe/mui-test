@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.1.0.min.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+  </head>
+  <style type="text/css">
+    body, html, h3{
+      width: 100%;
+      height: 100%;
+      background: white;
+      color: #000;
+      padding: 0;
+      margin: 0;
+    }
+    div.container {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .page {
+      width: 100%;
+      height: 100%;
+    }
+
+    .main-page {
+      background: #334;
+      color: white;
+    }
+
+    .main-page ul {
+      list-style: none;
+      padding: 2em 0;
+      width: 900px;
+      margin: 0 auto;
+    }
+    .main-page li {
+      margin: .5em;
+      float: left;
+      width: 206px;
+      height: 309px;
+      position: relative;
+    }
+    .main-page li h3 {
+      margin: 0;
+      font-size: 1em;
+      font-weight: normal;
+      z-index: 1;
+      opacity: 0.5;
+
+      display: block;
+      position: absolute;
+      height:2.5em;
+      padding: 0 .5em;
+      width: 5em;
+    }
+    .main-page li img {
+      margin: 0;
+      padding: 0;
+      display: block;
+      z-index: 2
+    }
+
+    .item-page {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .item-page .content {
+      padding: 5em 0;
+      width: 800px;
+      margin: 0 auto;
+    }
+
+    .item-page .back {
+      position: absolute;
+      top: 1em;
+      left: 1em;
+      font-size: 1.5em;
+    }
+
+    .item-page .comments {
+      position: absolute;
+      bottom: 1em;
+      font-size: 1.5em;
+    }
+
+    .comments-page {
+      background: #ccc;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      margin-top: -2em;
+    }
+
+    .comments-page .content {
+      margin: 2em auto;
+      width: 700px;
+      padding-top: 8em;
+    }
+
+    .comments-page .back {
+      font-size: 1.5em;
+      top: 1em;
+      position: absolute;
+    }
+
+  </style>
+  <body>
+    <div class='container'>
+      <div class="main-page page">
+        <ul>
+          <li>
+            <h3>All</h3>
+            <img src="i/1.jpeg">
+          </li>
+          <li>
+            <h3>Footwear</h3>
+            <img src="i/2.jpeg">
+          </li>
+          <li>
+            <h3>Outwear</h3>
+            <img src="i/3.jpeg">
+          </li>
+          <li>
+            <h3>Shoes</h3>
+            <img src="i/4.jpeg">
+          </li>
+          <li>
+            <h3>T-shirts</h3>
+            <img src="i/5.jpeg">
+          </li>
+          <li>
+            <h3>Other</h3>
+            <img src="i/6.jpeg">
+          </li>
+          <li>
+            <h3>Outwear</h3>
+            <img src="i/3.jpeg">
+          </li>
+          <li>
+            <h3>Shoes</h3>
+            <img src="i/4.jpeg">
+          </li>
+        </ul>
+        <div style="clear:both;width: 10em;"></div>
+      </div>
+
+      <div class="item-page page" style="display:none">
+        <div class="content">
+          <a href="javascript://" class="back">&#8656; Back</a>
+          <div class="row">
+            <div class="span4">
+              <img src="i/2.jpeg" />
+            </div>
+            <div class="span8">
+              <p>
+              The Mallory jacket, here in a blue Harris Tweed wool fabric. Buttoned up, tailored cut and big patch pockets. Ventile fabric on shoulders and sleeves. Sleeves are narrow but you can still fit a knitted piece underneath. Single vent slit in the back. Made in the UK.
+              </p>
+              <ul>
+                <li>Navy</li>
+                <li>100% Wool</li>
+                <li>Made in the UK</li>
+                <li>Size example: 48 is approx a Medium</li>
+              </ul>
+
+              <a href="javascript://" class="comments">Comments &#8659;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comments-page page" style="display:none">
+        <div class="content">
+          <a href="javascript://" class="back">Show Item &#8657;</a>
+
+          <p>As part of the main navigation, we’ve included the ability for you to add dropdowns to your nav. Check out the secondary nav above (right aligned) to see how it’s done.
+          </p>
+
+          <p>All elements within, and the entire topbar as well, are optional. You can choose to include a logo/name, nav, search, and a secondary nav—or any combination of that.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    var App = {
+      init: function(){
+        this.initMainPage();
+        this.initItemPage();
+      },
+      initMainPage: function() {
+        $(".main-page li").click(function(){
+          App.itemPageSelect();
+        })
+        this.mainPageImageToggle();
+      },
+      mainPageImageToggle: function() {
+        var mainLi = $(".main-page li");
+        var idx = Math.floor(Math.random() * 8) + 1;
+        var im = "i/" + idx + ".jpeg";
+        var idx = Math.floor(Math.random() * mainLi.size());
+        var li = mainLi.get(idx);
+        if ($(".main-page:visible").size() > 0) {
+          App.mainPageEffect(li, im);
+        }
+        setTimeout(App.mainPageImageToggle, 2000);
+      },
+      mainPageEffect: function(li, im) {
+        var it = $("img", li);
+        var e = ["fade", "clip", "blind", "drop"];
+        var idx = Math.floor(Math.random() * e.length);
+        var effect = e[idx];
+        it.hide(effect, function(){
+          it.attr("src", im);
+          it.show(effect);
+        });
+      },
+      mainPageSelect: function() {
+        var main = $(".main-page");
+        var item = $(".item-page");
+
+        main.css("width", 0);
+        main.show();
+        item.animate({ width: 0 }, 1000, function(){
+          item.hide();
+        });
+        main.animate({ width: "100%" }, 1000, function(){
+        });
+      },
+      initItemPage: function() {
+        $(".item-page .back").click(App.mainPageSelect);
+        $(".item-page .comments").click(App.commentsPageSelect);
+        $(".comments-page .back").click(App.fromCommentsPageSelect);
+      },
+      itemPageSelect: function() {
+        var main = $(".main-page");
+        var item = $(".item-page");
+
+        item.css("width", 0);
+        item.show();
+        main.animate({ width: 0 }, 1000, function(){
+          main.hide();
+        });
+        item.animate({ width: "100%" }, 1000, function(){
+        });
+      },
+      commentsPageSelect: function(){
+        var comments = $(".comments-page");
+        var item = $(".item-page");
+
+        $(".item-page .comments").hide();
+
+        comments.css("height", 0);
+        comments.show();
+        item.animate({ height: 0 }, 1000, function(){
+          item.hide();
+        });
+        comments.animate({ height: "100%" }, 1000, function(){
+        });
+      },
+      fromCommentsPageSelect: function(){
+        var comments = $(".comments-page");
+        var item = $(".item-page");
+
+        item.css("height", 0);
+        item.show();
+        comments.animate({ height: 0 }, 1000, function(){
+          comments.hide();
+        });
+        item.animate({ height: "100%" }, 1000, function(){
+          $(".item-page .comments").show();
+        });
+      }
+    };
+    $(document).ready(function(){
+      App.init();
+    })
+  </script>
+</html>
