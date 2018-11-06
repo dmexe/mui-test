@@ -34,5 +34,7 @@ object Build_BuildType : BuildType() {
 object Project : Project() {
     init {
         description = "Contains all other projects"
+        buildType(Build_BuildType)
+        buildTypesOrder = arrayListOf(Build_BuildType)
     }
 }
